@@ -1,14 +1,24 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 gas_df = pd.read_csv('gasolina.csv')
 gas_df.head(3)
 
-gas_plot = sns.lineplot(x=gas_df['dia'], y=gas_df['venda'])
-
-plt.xlabel("dia", fontdict={'size':14})
-plt.ylabel("preço", fontdict={'size':14})
-plt.title("Preço diário da gasolina", fontdict={'size':16, 'fontweight':'bold'})
-
-gas_plot.figure.savefig('gasolina.png')
+plt.figure(figsize=(12,12))
+plt.plot(gas_df['dia'], 
+         gas_df['venda'], 
+         lw=4, c='green')
+plt.hlines(y=gas_df['venda'].mean(), 
+           xmin=gas_df['dia'].min(), 
+           xmax=gas_df['dia'].max(), 
+           ls='--', lw=4, color='red')
+plt.title('GASOLINA: PREÇO/DIA E MÉDIA', 
+          fontdict={'fontweight':'bold', 'fontsize':16})
+plt.xlabel('DIAS', 
+           fontdict={'fontsize':16})
+plt.ylabel('PREÇOS', 
+           fontdict={'fontsize':16})
+plt.xticks(size=16)
+plt.yticks(size=16)
+plt.grid(visible=True, ls='--')
+plt.savefig('gasolina.png')
