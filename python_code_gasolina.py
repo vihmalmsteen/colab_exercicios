@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 gas_df = pd.read_csv('gasolina.csv')
 gas_df.head(3)
 
-plt.figure(figsize=(12,12))
+plt.figure(figsize=(14,10))
 plt.plot(gas_df['dia'], 
          gas_df['venda'], 
          lw=4, c='green')
